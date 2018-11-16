@@ -7,7 +7,7 @@ client = Hash()
 client.inputUsername()
 client.inputPass()
 
-master.add(client.retUse(), client.retHash(), client.retSalt())
+master.add(client)
 
 print("\n")
 master.printLib()
@@ -16,11 +16,9 @@ check = Hash()
 logUse = input("Log in username: ")
 check.setUse(logUse)
 logPass = input("Log in password: ")
-check.runHash(logPass)
-
-print(master.findAndRetHash(logUse))
+foundAccount = master.findAndRetHashObj(logUse)
+chkSalt = foundAccount.retSalt()
+check.runHash(logPass, chkSalt)
+print("\n")
+print(foundAccount.retHash())
 print(check.retHash())
-"""
-if master.findAndRetHash(logUse) == check.retHash():
-    print("login successful")
-"""

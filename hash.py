@@ -21,7 +21,7 @@ class Hash():
 
     def inputPass(self):
         password = input("Enter Password: ")
-        self.runHash(password)
+        self.runHash(password, self.identifier)
 
     def inputUsername(self):
         use = input("Enter Username: ")
@@ -44,8 +44,8 @@ class Hash():
     def retSalt(self):
         return self.identifier
 
-    def runHash(self, data):
-        dataString = data.encode() + self.identifier.encode()
+    def runHash(self, data, salt):
+        dataString = data.encode() + salt.encode()
         hash = hashlib.sha256(dataString).hexdigest()
         self.hashStr = hash
 

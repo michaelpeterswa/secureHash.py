@@ -5,28 +5,24 @@ library of hashed passwords and their accompanying usernames
 
 class Library():
 
-    usernames = []
     hashes = []
-    salts = []
 
     def __init__(self):
         super().__init__()
         """print("hello, library object created")"""
 
-    def add(self, use, hash, salt):
-        self.usernames.append(use)
-        self.hashes.append(hash)
-        self.salts.append(salt)
-        print("added")
+    def add(self, hashObj):
+        self.hashes.append(hashObj)
+        """print("added")"""
 
     def printLib(self):
-        for i in range(len(self.usernames)):
-            print("username:", self.usernames[i])
-            print("hash:", self.hashes[i])
+        for i in range(len(self.hashes)):
+            print("username:", self.hashes[i].username)
+            print("hash:", self.hashes[i].hashStr)
 
-    def findAndRetHash(self, data):
-        for i in range(len(self.usernames)):
-            if data == self.usernames[i]:
-                print("found:", self.usernames[i])
-                print("found hash:", self.hashes[i])
+    def findAndRetHashObj(self, data):
+        for i in range(len(self.hashes)):
+            if data == self.hashes[i].username:
+                print("found:", self.hashes[i].username)
+                print("found hash:", self.hashes[i].hashStr)
                 return self.hashes[i]
